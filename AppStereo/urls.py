@@ -7,4 +7,5 @@ urlpatterns = [
     path('musicos/', views.musicos),
     path('instrumentos/', views.instrumentos),
     path('albums/', views.albums),
+    
 ]
