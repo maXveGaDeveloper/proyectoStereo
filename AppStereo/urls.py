@@ -3,9 +3,9 @@ from AppStereo import views
 
 
 urlpatterns = [
-    path('', views.inicio, name='inicio'),
-    path('musicos/', views.musicos),
-    path('instrumentos/', views.instrumentos),
-    path('albums/', views.albums),
+    path('', views.inicio, name='Inicio'),
+    path('musicos/', views.musicos, name='Musicos'),
+    path('instrumentos/', views.instrumentos, name='Instrumentos'),
+    path('albums/', views.albums, name='Albums'),
     
 ]
