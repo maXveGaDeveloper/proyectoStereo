@@ -1,0 +1,16 @@
+
+<p>estamos buscando al musico: {{musico}}</p>
+
+{% if musicos %}
+
+<ul>
+        
+    {% for musico in musicos %}
+        
+        <li>{{ musico.nombre }}</li>
+        
+    {% endfor %}    
+
+</ul>
+    
+    {% endif %}

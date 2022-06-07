@@ -46,3 +46,20 @@ def instrumentosForm(request):
     else:
         miFormulario = InstrumentosForm() #formulario vacio para construir el html
     return render(request, 'AppStereo/instrumentosForm.html', {'miFormulario': miFormulario})       
+
+
+def busquedaMusicos(request):
+    return render(request, "AppStereo/busquedaMusicos.html")
+
+
+def buscar(request):
+    if request.GET["nombre"]:
+        musico = request.GET["nombre"]
+        musicos = Musicos.objects.filter(nombre__icontains=musico)
+        return render(request, "AppStereo/resultadosBusqueda.html", {'musico': musicos, 'nombre': musico})
+
+    else:
+
+        respuesta = "No se ha ingresado ningun nombre"
+    return HttpResponse(respuesta)    
+      
