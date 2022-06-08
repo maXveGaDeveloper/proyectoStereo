@@ -1,16 +1,27 @@
-
-<p>estamos buscando al musico: {{musico}}</p>
+{% extends "AppStereo/base.html" %}
+{% load static %}
+{% block contenido %}
 
 {% if musicos %}
+
+<p>estamos buscando al musico: {{ nombre }}<p>
 
 <ul>
         
     {% for musico in musicos %}
         
-        <li>{{ musico.nombre }}</li>
+        <li>Nombre: {{ musico.nombre }}</li>
+        <li>Apellido: {{ musico.apellido }}</li>
+        <li>Instrumento: {{ musico.instrumento }}</li>
+        <li>Banda: {{ musico.banda }}</li>
         
     {% endfor %}    
 
+    {% else %}
+    
+    <p>{{ nombre }} no se encuentra</p>
 </ul>
     
     {% endif %}
+
+{% endblock %}

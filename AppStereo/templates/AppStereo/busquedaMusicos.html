@@ -1,9 +1,13 @@
+{% extends "AppStereo/base.html" %}
+{% load static %}
+{% block contenido %}
 
 <form action="/AppStereo/busquedaMusicos" method="GET">
 
-    <input type="text" name="musicos" id="nombre">
+    <input type="text" name="musicos" id="musicos">
     <input type="submit" value="Buscar">
 
 </form>
 
 
+{% endblock %}

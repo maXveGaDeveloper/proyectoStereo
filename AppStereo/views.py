@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from AppStereo.models import Instrumentos, Musicos
 from AppStereo.forms import MusicosForm, InstrumentosForm
-
+from django.utils.datastructures import MultiValueDictKeyError
 # Create your views here.
 
 
@@ -49,8 +49,21 @@ def instrumentosForm(request):
 
 
 def busquedaMusicos(request):
-    return render(request, "AppStereo/busquedaMusicos.html")
-
+    try:
+        if request.method == "GET":
+            musico = request.GET["musicos"]
+            musicos = Musicos.objects.filter(nombre__icontains=musico)
+            if musicos:
+                return render(
+                    request,
+                    "AppStereo/resultadosBusqueda.html",
+                    {"musicos": musicos, "nombre": musico},
+                )
+            else:
+                return HttpResponse(f"<h2>'{musico}' not found.</h2>")
+    except MultiValueDictKeyError:
+        return render(request, "AppStereo/busquedaMusicos.html")
+        
 
 def buscar(request):
     if request.GET["nombre"]:

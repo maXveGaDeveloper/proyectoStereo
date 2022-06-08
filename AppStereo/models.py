@@ -8,6 +8,9 @@ class Musicos(models.Model):
     instrumento = models.CharField(max_length=50)
     banda = models.CharField(max_length=50)
 
+    def str(self) -> str:
+        return f"{type(self).name}(nombre={self.nombre},apellido={self.apellido},instrumento={self.instrumento},banda={self.banda})"
+
 class Instrumentos(models.Model):
     nombre = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
