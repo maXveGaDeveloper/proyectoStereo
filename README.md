@@ -10,7 +10,7 @@
 ## Vistas
 
 - [App Stereo/](http://127.0.0.1:8000/AppStereo) - Vista de inicio de la app
-- [App Stereo/musicos](http://127.0.0.1:8000/AppStereo) - Vista Modelo "Musicos"
+- [App Stereo/musicos](http://127.0.0.1:8000/AppStereo/musicos/) - Vista Modelo "Musicos"
 - [App Stereo/instrumentos/](http://127.0.0.1:8000/AppStereo/instrumentos/) - Vista Modelo "Instrumentos"
 - [App Stereo/albums/](http://127.0.0.1:8000/AppStereo/albums/) - Vista Modelo "Albums"
 - [App Stereo/musicosForm/](http://127.0.0.1:8000/AppStereo/musicosForm/) - Vista para ingresar "Musicos" a la base de datos.
