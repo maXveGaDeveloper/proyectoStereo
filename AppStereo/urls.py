@@ -11,4 +11,8 @@ urlpatterns = [
     path('instrumentosForm/', views.instrumentosForm, name='InstrumentosForm'),
     path('busquedaMusicos/', views.busquedaMusicos, name='BusquedaMusicos'),
     path('buscar/', views.buscar, name='Buscar'),
+    path ('leerMusicos/', views.leerMusicos, name='LeerMusicos'),
+    path ('leerInstrumentos/', views.leerInstrumentos, name='LeerInstrumentos'),
+
+
 ]

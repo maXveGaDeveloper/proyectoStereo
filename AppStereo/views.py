@@ -75,4 +75,20 @@ def buscar(request):
 
         respuesta = "No se ha ingresado ningun nombre"
     return HttpResponse(respuesta)    
+
+
+def leerMusicos(request):
+    musicos = Musicos.objects.all()
+    return render(request, "AppStereo/leerMusicos.html", {'musicos': musicos})
+
+
+def leerInstrumentos(request):
+    instrumentos = Instrumentos.objects.all()
+    contexto = {'instrumentos': instrumentos}
+    return render(request, "AppStereo/leerInstrumentos.html", contexto)
+
+
+
+
+
       

@@ -1,0 +1,21 @@
+{% extends "AppStereo/base.html" %}
+{% load static %}
+{% block contenido %}
+
+<h1>Lista de Musicos</h1>
+
+<h3></h3>
+
+
+
+<body>
+
+    {% for i in musicos %}
+    
+        <li>{{i}}</li>
+    
+    {% endfor %}
+
+<body>
+
+{% endblock %}
