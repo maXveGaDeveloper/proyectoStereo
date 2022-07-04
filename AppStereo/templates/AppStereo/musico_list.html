@@ -1,0 +1,28 @@
+{% extends "AppStereo/base.html" %}
+{% load static %}
+{% block contenido %}
+
+<h1>Musicos</h1>
+
+<h3>Aqui encontrara la informacion de sus Musicos favoritos</h3>
+
+{% for musico in object_list %}
+<li>{{musico}}</li>
+<button>
+    <a href="% url 'musico_detalle' musico.id %">Detalle</a>
+</button>
+<button>
+    <a href="% url 'musico_editar' musico.id %">Editar</a>
+</button>    
+<button>
+    <a href="% url 'musico_borrar' musico.id %">Borrar</a>
+</button>
+{% endfor %}
+
+<br>
+<br>
+<button>
+    <a href="% url 'musico_crear' musico.id %">Crear</a>
+</button>    
+
+{% endblock %}

@@ -4,6 +4,9 @@ from django.shortcuts import render
 from AppStereo.models import Instrumentos, Musicos
 from AppStereo.forms import MusicosForm, InstrumentosForm
 from django.utils.datastructures import MultiValueDictKeyError
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
 # Create your views here.
 
 
@@ -89,6 +92,76 @@ def leerInstrumentos(request):
 
 
 
+class MusicosList(ListView):
 
+    model = Musicos
+    template_name = "AppStereo/musico_list.html"
+
+
+class InstrumentosList(ListView):
+
+    model = Instrumentos
+    template_name = "AppStereo/instrumento_list.html"
+
+
+class MusicosDetail(DetailView):
+
+    model = Musicos
+    template_name = "AppStereo/musico_detalle.html"
+
+
+class InstrumentosDetail(DetailView):
+
+    model = Instrumentos
+    template_name = "AppStereo/instrumento_detalle.html"
+
+
+class MusicoCreacion(CreateView):
+
+    model = Musicos
+    template_name = "AppStereo/musico_form.html"
+    success_url = reverse_lazy('AppStereo:musicos')
+    fields = ['nombre', 'apellido', 'edad', 'instrumento', 'banda']
+
+
+class InstrumentoCreacion(CreateView):
+
+    model = Instrumentos
+    template_name = "AppStereo/instrumento_form.html"
+    success_url = reverse_lazy('AppStereo:instrumentos')
+    fields = ['nombre', 'modelo', 'descripcion']
+
+
+class MusicoUpdate(UpdateView):
+
+    model = Musicos
+    template_name = "AppStereo/musico_form.html"
+    success_url = reverse_lazy('AppStereo:musicos')
+    fields = ['nombre', 'apellido', 'edad', 'instrumento', 'banda']
+
+
+class InstrumentoUpdate(UpdateView):
+
+    model = Instrumentos
+    template_name = "AppStereo/instrumento_form.html"
+    success_url = reverse_lazy('AppStereo:instrumentos')
+    fields = ['nombre', 'modelo', 'descripcion']
+
+
+class MusicoDelete(DeleteView):
+
+    model = Musicos
+    template_name = "AppStereo/musico_delete.html"
+    success_url = reverse_lazy('AppStereo:musicos')
+
+
+class InstrumentoDelete(DeleteView):
+
+    model = Instrumentos
+    template_name = "AppStereo/instrumento_delete.html"
+    success_url = reverse_lazy('AppStereo:instrumentos')                    
+
+    
+        
 
       

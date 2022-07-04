@@ -1,0 +1,16 @@
+{% extends "AppStereo/base.html" %}
+{% load static %}
+{% block contenido %}
+
+<h1>Musicos</h1>
+
+<h3>Aqui encontrara la informacion de sus Musicos favoritos</h3>
+
+<form method="POST">{% csrf_token %}
+    Editar Musico
+    {{form.as_p}}
+    <input type="submit" value="Enviar">
+
+    
+
+{% endblock %}

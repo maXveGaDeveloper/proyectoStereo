@@ -1,6 +1,6 @@
 from django.urls import path
 from AppStereo import views
-
+from AppStereo.views import *
 
 urlpatterns = [
     path('', views.inicio, name='Inicio'),
@@ -13,6 +13,17 @@ urlpatterns = [
     path('buscar/', views.buscar, name='Buscar'),
     path ('leerMusicos/', views.leerMusicos, name='LeerMusicos'),
     path ('leerInstrumentos/', views.leerInstrumentos, name='LeerInstrumentos'),
+
+    path('musico/list/', MusicosList.as_view(), name='musico_list'),
+    path('instrumento/list/', InstrumentosList.as_view(), name='instrumento_list'),
+    path('musico/<pk>', MusicosDetail.as_view(), name='musico_detalle'),
+    path('intrumento/<pk>', InstrumentosDetail.as_view(), name='instrumento_detalle'),
+    path('musico/nuevo/', MusicoCreacion.as_view(), name='musico_crear'),
+    path('instrumento/nuevo', InstrumentoCreacion.as_view(), name='instrumento_crear'),
+    path('musico/editar/<pk>', MusicoUpdate.as_view(), name='musico_editar'),
+    path('instrumento/editar/<pk>', InstrumentoUpdate.as_view(), name='instrumento_editar'),
+    path('musico/eliminar/<pk>', MusicoDelete.as_view(), name='musico_eliminar'),
+    path('instrumento/eliminar/<pk>', InstrumentoDelete.as_view(), name='instrumento_eliminar'),
 
 
 ]

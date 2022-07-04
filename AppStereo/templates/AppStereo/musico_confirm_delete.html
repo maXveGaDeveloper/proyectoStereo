@@ -1,0 +1,15 @@
+{% extends "AppStereo/base.html" %}
+{% load static %}
+{% block contenido %}
+
+<h1>Musicos</h1>
+
+<h3>Aqui encontrara la informacion de sus Musicos favoritos</h3>
+
+<form method="POST">{% csrf_token %}
+    Estas seguro de eliminar el musico: "{{ musico.nombre }} {{ musico.apellido }}"?
+    <input type="submit" value="SI">
+
+    
+
+{% endblock %}
