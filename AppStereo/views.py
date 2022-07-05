@@ -6,6 +6,8 @@ from AppStereo.forms import MusicosForm, InstrumentosForm
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
@@ -163,5 +165,29 @@ class InstrumentoDelete(DeleteView):
 
     
         
+def login_request(request):
 
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
       
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contra = form.cleaned_data.get('password')
+
+            user = authenticate(username = usuario, password = contra)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request, 'AppStereo/inicio.html', {"mensaje":f"bienvenido {usuario}"})
+            else:
+
+                return render(request, "AppStereo/inicio.html", {"mensaje": "usuario o contraseña incorrectos"})
+            
+        else:
+
+                return render(request, "AppStereo/inicio.html", {"mensaje": "formulario erroneo"})
+
+    form = AuthenticationForm()
+
+    return render(request, "AppStereo/login.html", {'form': form})            
