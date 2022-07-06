@@ -1,6 +1,6 @@
 {% extends "AppStereo/base.html" %}
-{% load static %}
 {% block contenido %}
+{% load static %}
 
 <h1>Instrumentos</h1>
 
@@ -23,7 +23,7 @@
 <br>
 <br>
 <button>
-    <a href="{% url 'instrumento_nuevo' instrumento.id %}">Crear</a>
+    <a href="{% url 'instrumento_nuevo' %}">Crear</a>
 </button>    
 
 {% endblock %}

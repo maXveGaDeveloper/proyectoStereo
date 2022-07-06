@@ -1,17 +1,17 @@
 {% extends "AppStereo/base.html" %}
-{% load static %}
 {% block contenido %}
+{% load static %}
 
 <h1>Instrumentos</h1>
 
 <h3>Aqui encontrara la informacion de sus Instrumentos favoritos</h3>
 
-<p>NOMBRE: {{instrumento.nombre}}</p>
-<p>MODELO: {{instrumento.modelo}}</p>
-<p>DESCRIPCION: {{instrumento.descripcion}}</p>
+<p>NOMBRE: {{ instrumento.nombre }}</p>
+<p>MODELO: {{ instrumento.modelo }}</p>
+<p>DESCRIPCION: {{ instrumento.descripcion }}</p>
 
 <p>
-    <a href="{% url 'instrumentos' %}">Volver</a>
+    <a href="{% url 'Instrumentos' %}">Volver</a>
 </p>
 
 {% endblock %}

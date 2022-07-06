@@ -9,3 +9,13 @@
 4_/register/ -------> # vista para registrarse en la app
 
 5_/busquedaMusicos/ -------> # vista para buscar Musicos en la base de datos de la app 
+
+-----------------CRUD------------------
+
+_/musico/list/ ------> muestra los musicos de la BD, para editarlos o eliminarlos
+
+_/instrumento/list/ ------> muestra los instrumentos de la BD, para editarlos o eliminarlos
+
+
+
+
