@@ -14,8 +14,9 @@ urlpatterns = [
     path('buscar/', views.buscar, name='Buscar'),
     path ('leerMusicos/', views.leerMusicos, name='LeerMusicos'),
     path ('leerInstrumentos/', views.leerInstrumentos, name='LeerInstrumentos'),
-    path ('login', views.login_request, name='Login'),
-    path ('register', views.register, name='Register'),
+    path ('login/', views.login_request, name='Login'),
+    path ('register/', views.register, name='Register'),
+    path ('logout/', views.logout_user, name='Logout'),
     
     path('musico/list/', MusicosList.as_view(), name='musico_list'),
     path('instrumento/list/', InstrumentosList.as_view(), name='instrumento_list'),

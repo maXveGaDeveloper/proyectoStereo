@@ -3,6 +3,10 @@
 {% block contenido %}
 
 <h1>Lista de Musicos</h1>
+{% if request.user.is_authenticated %}
+<small>Si usted es músico y quiere agregarse a esta lista, <a href="{% url 'MusicosForm' %}">haga click aquí</a></small><br>
+<small>Si quiere editar algún músico, <a href="{% url 'musico_list' %}">haga click aquí</a></small>
+{% endif %}
 
 <h3></h3>
 
@@ -12,7 +16,7 @@
 
     {% for i in musicos %}
     
-        <li>{{i}}</li>
+        <li>{{i.nombre}} {{i.apellido}} - Edad: {{i.edad}} - Instrumento: {{i.instrumento}} en {{i.banda}}</li>
     
     {% endfor %}
 

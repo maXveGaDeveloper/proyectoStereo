@@ -8,6 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -28,29 +29,30 @@ def albums(request):
 def musicosForm(request):
     if request.method == 'POST':
         miFormulario = MusicosForm(request.POST) #aqui llega la info del html
-        print(miFormulario)
-        if miFormulario.is_valid:
+        # print(miFormulario)
+        if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
             musico = Musicos (nombre=informacion['nombre'], apellido=informacion['apellido'], edad=informacion['edad'], instrumento=informacion['instrumento'], banda=informacion['banda'])
             musico.save()
-            return render(request, 'AppStereo/musicos.html') #redireccionamos al usuario a la pagina 'musicos'
+            musicos = Musicos.objects.all()
+            return render(request, "AppStereo/leerMusicos.html", {'musicos': musicos}) #redireccionamos al usuario a la pagina 'musicos'
     else:
         miFormulario = MusicosForm() #formulario vacio para construir el html
-    return render(request, 'AppStereo/musicosForm.html', {'miFormulario': miFormulario})            
+        return render(request, 'AppStereo/musicosForm.html', {'miFormulario': miFormulario})            
 
 
 def instrumentosForm(request):
     if request.method == 'POST':
         miFormulario = InstrumentosForm(request.POST)
-        print(miFormulario)
-        if miFormulario.is_valid:
+        # print(miFormulario)
+        if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
-            instrumento = Instrumentos (nombre=informacion['nombre'], modelo=informacion['modelo'], descripcion=informacion['descripcion'])
+            instrumento = Instrumentos(nombre=informacion['nombre'], modelo=informacion['modelo'], descripcion=informacion['descripcion'])
             instrumento.save()
             return render(request, 'AppStereo/instrumentos.html') #redireccionamos al usuario a la pagina 'instrumentos'
     else:
         miFormulario = InstrumentosForm() #formulario vacio para construir el html
-    return render(request, 'AppStereo/instrumentosForm.html', {'miFormulario': miFormulario})       
+        return render(request, 'AppStereo/instrumentosForm.html', {'miFormulario': miFormulario})       
 
 
 def busquedaMusicos(request):
@@ -94,31 +96,31 @@ def leerInstrumentos(request):
 
 
 
-class MusicosList(ListView):
+class MusicosList(LoginRequiredMixin, ListView):
 
     model = Musicos
     template_name = "AppStereo/musico_list.html"
 
 
-class InstrumentosList(ListView):
+class InstrumentosList(LoginRequiredMixin, ListView):
 
     model = Instrumentos
     template_name = "AppStereo/instrumento_list.html"
 
 
-class MusicosDetail(DetailView):
+class MusicosDetail(LoginRequiredMixin, DetailView):
 
     model = Musicos
     template_name = "AppStereo/musico_detalle.html"
 
 
-class InstrumentosDetail(DetailView):
+class InstrumentosDetail(LoginRequiredMixin, DetailView):
 
     model = Instrumentos
     template_name = "AppStereo/instrumento_detalle.html"
 
 
-class MusicoCreacion(CreateView):
+class MusicoCreacion(LoginRequiredMixin, CreateView):
 
     model = Musicos
     template_name = "AppStereo/musico_form.html"
@@ -126,7 +128,7 @@ class MusicoCreacion(CreateView):
     fields = ['nombre', 'apellido', 'edad', 'instrumento', 'banda']
 
 
-class InstrumentoCreacion(CreateView):
+class InstrumentoCreacion(LoginRequiredMixin, CreateView):
 
     model = Instrumentos
     template_name = "AppStereo/instrumento_form.html"
@@ -134,15 +136,15 @@ class InstrumentoCreacion(CreateView):
     fields = ['nombre', 'modelo', 'descripcion']
 
 
-class MusicoUpdate(UpdateView):
+class MusicoUpdate(LoginRequiredMixin, UpdateView):
 
     model = Musicos
     template_name = "AppStereo/musico_form.html"
-    success_url = reverse_lazy('AppStereo:musicos')
+    success_url = reverse_lazy('LeerMusicos')
     fields = ['nombre', 'apellido', 'edad', 'instrumento', 'banda']
 
 
-class InstrumentoUpdate(UpdateView):
+class InstrumentoUpdate(LoginRequiredMixin, UpdateView):
 
     model = Instrumentos
     template_name = "AppStereo/instrumento_form.html"
@@ -150,14 +152,14 @@ class InstrumentoUpdate(UpdateView):
     fields = ['nombre', 'modelo', 'descripcion']
 
 
-class MusicoDelete(DeleteView):
+class MusicoDelete(LoginRequiredMixin, DeleteView):
 
     model = Musicos
     template_name = "AppStereo/musico_delete.html"
     success_url = reverse_lazy('AppStereo:musicos')
 
 
-class InstrumentoDelete(DeleteView):
+class InstrumentoDelete(LoginRequiredMixin, DeleteView):
 
     model = Instrumentos
     template_name = "AppStereo/instrumento_delete.html"
@@ -177,11 +179,11 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                return render(request, 'AppStereo/inicio.html', {'mensaje':f'bienvenido {usuario}'})
+                return render(request, 'AppStereo/inicio.html', {'mensaje':f'Bienvenido {usuario}'})
             else:
-                return render(request, 'AppStereo/inicio.html', {'mensaje': 'usuario o contraseña incorrectos'})
+                return render(request, 'AppStereo/inicio.html', {'mensaje': 'Usuario o contraseña incorrectos'})
         else:
-            return render(request, 'AppStereo/inicio.html', {'mensaje': 'formulario erroneo'})
+            return render(request, 'AppStereo/inicio.html', {'mensaje': 'Usuario o contraseña incorrectos'})
     else:
         form = AuthenticationForm()
         return render(request, 'AppStereo/login.html', {'form': form})          
@@ -193,7 +195,7 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             form.save()
-            return render(request, 'AppStereo/inicio.html', {'mensaje': f'usuario {username} creado'})
+            return render(request, 'AppStereo/inicio.html', {'mensaje': f'Usuario {username} creado'})
         else:
             return render(request, 'AppStereo/inicio.html', {'mensaje': 'Error, no se pudo crear el usuario'})
     else:
@@ -201,7 +203,9 @@ def register(request):
         return render(request, 'AppStereo/register.html', {'form': form})           
         
 
-            
+def logout_user(request):
+    logout(request)
+    return render(request, 'AppStereo/inicio.html')
 
 
 
