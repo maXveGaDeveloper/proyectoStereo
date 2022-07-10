@@ -2,19 +2,19 @@
 
 2_/login --------> # vista para logearse en la app
 
-2_/musicosForm/ -------> # vista para ingresar Musicos a la base de datos de la app
+2_/musico/ -------> # vista para ver los Musicos a la base de datos de la app, para poder agregar, editar y eliminar debe logearse.
 
-3_/instrumentosForm/ -------> # vista para ingresar Instrumentos a la base de datos de la app
+3_/instrumentos/ -------> # vista para ingresar Instrumentos a la base de datos de la app, para poder agregar, editar y eliminar debe logearse.
 
 4_/register/ -------> # vista para registrarse en la app
 
 5_/busquedaMusicos/ -------> # vista para buscar Musicos en la base de datos de la app 
 
------------------CRUD------------------
 
-_/musico/list/ ------> muestra los musicos de la BD, para editarlos o eliminarlos
 
-_/instrumento/list/ ------> muestra los instrumentos de la BD, para editarlos o eliminarlos
+
+
+
 
 
 

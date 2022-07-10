@@ -6,5 +6,11 @@
 
 <h3>Aqui encontrara la informacion de sus Musicos favoritos</h3>
 
+{% for i in musicos %}
+    
+        <li>{{i.nombre}} {{i.apellido}} - Edad: {{i.edad}} - Instrumento: {{i.instrumento}} en {{i.banda}}</li>
+    
+{% endfor %}
+
 
 {% endblock %}

@@ -3,16 +3,17 @@
 {% block contenido %}
 
 <h1>Lista de Instrumentos</h1>
-
-<h3></h3>
-
+{% if request.user.is_authenticated %}
+<small>Si quiere agregar un instrumento, <a href="{% url 'InstrumentosForm' %}">haga click aquí</a></small><br>
+<small>Si quiere editar algún instrumento, <a href="{% url 'instrumento_list' %}">haga click aquí</a></small>
+{% endif %}
 
 
 <body>
 
     {% for i in instrumentos %}
     
-        <li>{{i}}</li>
+        <li>{{i.nombre}} - Modelo: {{i.modelo}} - Descripcion: {{i.descripcion}}</li>
     
     {% endfor %}
 

@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="{% url 'LeerMusicos'%}">Musicos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'InstrumentosForm'%}">Instrumentos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'LeerInstrumentos'%}">Instrumentos</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Albums'%}">Albums</a></li>
                         {% if request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'Logout'%}">Salir</a></li>

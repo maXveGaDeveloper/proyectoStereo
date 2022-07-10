@@ -6,7 +6,12 @@
 
 <h3>Aqui encontrara la informacion de sus Musicos favoritos</h3>
 
-{{form.as_p}}
+<p>NOMBRE: {{musico.nombre}}<p>
+<p>APELLIDO: {{musico.apellido}}<p>
+<p>EDAD: {{musico.edad}}<p>
+<p>INSTRUMENTO: {{musico.instrumento}}<p>
+<P>BANDA: {{musico.banda}}</P>    
+
 <p>
    <a href="{% url 'Musicos' %}">Volver</a>
 </p>   
